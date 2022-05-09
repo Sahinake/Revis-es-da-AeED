@@ -44,7 +44,14 @@ struct aluno {
 
 typedef struct fila Fila; //definição do struct está no arquivo.c
 
-Fila* criar(); //Assinatura/protótipo da função está no arquivo.c
+Fila* criar (); //Assinatura/protótipo da função está no arquivo.c
+void destruir (Fila*);
+int tamanho (Fila*);
+int cheia (Fila*);
+int vazia (Fila*);
+int inserir (Fila*, struct aluno);
+int remover (Fila*);
+int acessar (Fila*, struct aluno);
 
 /*
 filaEstatica.c */
@@ -66,6 +73,73 @@ Fila* criar() {
 		fe->fim = 0;
 	}
 	return fe;
+}
+
+void destruir (Fila* fe) {
+	free(fe);
+	
+}
+int tamanho (Fila* fe) {
+	if (fe == NULL) {
+		return 0;
+	}
+	else {
+		return fe->qtd;
+	}
+}
+int cheia (Fila* fe) {
+	if (fe == NULL) {
+		return 0;
+	}
+	else {
+		if(fe->qtd == MAX) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+}
+int vazia (Fila*) fe {
+	if(qtd == NULL) {
+		return 1;
+	}
+	else if (fe->qts == 0){
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+int inserir (Fila* fe, struct aluno novosdados) {
+	if (fe == NULL)
+		return 0;
+	else if (cheia(fe))
+		return 0;
+	else {
+		fe->dados[fe->fim] = novosdados; //O elemento do fima da lista recebe o novo elemento
+		fe->qtd++; //qtd incrementa
+		fe->fim = (fe->fim+1) %MAX; //fim da fila passa a ser o novo elemento
+		return 1;
+	}
+}
+int remover (Fila* fe) {
+	if (fe == NULL || fe->qtd == 0)
+		return 0;
+	else {
+		fe->inicio = (fe->inicio+1)%MAX
+		fe->qtd--;
+		return 1;
+	}
+}
+
+int acessar (Fila* fe, struct aluno* a) {
+	if (fe == NULL || fe->qtd == 0)
+		return 0;
+	else {
+		*a =fe->dados[fe->inicio];
+		return 1;
+	}
 }
 /*
 main.c */
