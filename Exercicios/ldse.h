@@ -19,3 +19,4 @@ int removerInicio (Lista*);
 int removerValor(Lista*, int);
 int acessarIndice(Lista*, in, struct aluno*);
 int acessarValor(Lista*, int, struct aluno*);
+int informacoes(Lista*, struct informacoes);
